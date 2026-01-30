@@ -160,11 +160,22 @@ header nav a:hover {
 }
 
 /* Sections */
+#about {
+    border-bottom: none;
+}
+
 #about h2, #projects h2, #contact h2 {
     font-size: 3.5rem;
     text-align: center;
     margin-bottom: 5rem;
+    font-weight: 400;
 }
+
+#projects h2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 
 #about p {
     font-size: 1.2rem;
@@ -184,8 +195,12 @@ header nav a:hover {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 2rem;
-    align-items: center;
+    align-items: start;
     justify-content: center;
+}
+
+.project-info {
+    text-align: center;
 }
 
 .project-thumbnail {
@@ -237,7 +252,8 @@ header nav a:hover {
     border-radius: 24px;
     padding: 12px;
     box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
-    box-sizing: border-box; /* Fix for overflow */
+    box-sizing: border-box;
+    /* Removed transform: translateX(-5%); */
 }
 
 .macbook-screen {
@@ -245,7 +261,7 @@ header nav a:hover {
     z-index: 2;
     background: #000;
     border-radius: 12px;
-    padding-bottom: 75%; /* 4:3 Aspect Ratio */
+    padding-bottom: 75%;
     overflow: hidden;
 }
 
