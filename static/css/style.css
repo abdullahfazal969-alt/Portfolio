@@ -61,8 +61,8 @@ header .logo a {
     position: relative;
     display: inline-block;
     overflow: hidden;
-    height: 1.6em;
-    line-height: 1.6em;
+    height: 1.4em;
+    line-height: 1.4em;
     vertical-align: middle;
 }
 
@@ -71,7 +71,7 @@ header .logo .byline-hover {
     display: block;
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     white-space: nowrap;
-    line-height: 1.6em;
+    line-height: 1.4em;
 }
 
 header .logo .byline-hover {
@@ -112,18 +112,18 @@ header nav a:hover {
 #hero {
     padding: 8rem 0;
     display: flex;
-    align-items: center;
+    flex-direction: column; /* Changed to column for vertical centering */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
     border-top: none;
-    text-align: left;
+    text-align: center; /* Center text */
     background-color: var(--header-bg);
     border-bottom: none; /* No line after hero */
 }
 
 .hero-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    align-items: center;
-    gap: 4rem;
+    display: block; /* Changed to block for single column */
+    max-width: 900px; /* Constrain width for centering */
 }
 
 .hero-title-wrap {
@@ -138,8 +138,8 @@ header nav a:hover {
 }
 
 .hero-text h1 {
-    font-size: 5.5rem;
-    font-weight: 700;
+    font-size: 6.5rem; /* Increased font size */
+    font-weight: 400; /* Reduced font weight */
     margin: 0;
     line-height: 1.1;
     color: var(--color-text-light);
@@ -148,28 +148,16 @@ header nav a:hover {
 }
 
 .hero-text p {
-    font-size: 1.6rem;
+    font-size: 2rem; /* Increased font size */
     font-weight: 400;
-    margin-top: 1.5rem;
-    max-width: 550px;
+    margin: 1.5rem auto 0 auto; /* Center text */
+    max-width: 800px; /* Constrain width for centering */
     color: var(--color-text-light);
 }
 
+/* Removed hero-image styles */
 .hero-image {
-    width: 280px;
-    height: 280px;
-    border-radius: 0;
-    overflow: hidden;
-    justify-self: center;
-    background-color: var(--header-bg);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    padding: 10px;
-}
-
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: none; /* Ensure image is not displayed */
 }
 
 /* Sections */
