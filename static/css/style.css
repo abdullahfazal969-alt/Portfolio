@@ -3,11 +3,11 @@
 :root {
     --font-primary: 'Poppins', sans-serif;
     --color-background: #ffffff;
-    --color-text: #000000;
-    --color-light-gray: #f8f9fa; /* For subtle background variations */
-    --color-border: #e0e0e0;
+    --color-text-dark: #000000;
+    --color-text-light: #ffffff;
+    --header-bg: #999d9e;
     --section-divider: #000000;
-    --thumbnail-bg: #999d9e; /* Project thumbnail background color */
+    --thumbnail-bg: #999d9e;
 }
 
 /* General Body and Typography */
@@ -18,7 +18,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--color-background);
-    color: var(--color-text);
+    color: var(--color-text-dark);
 }
 
 .container {
@@ -29,7 +29,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
-    color: var(--color-text);
+    color: var(--color-text-dark);
 }
 
 section {
@@ -41,9 +41,10 @@ section:last-of-type {
     border-bottom: none;
 }
 
-/* Header (Minimalist, like inspirant site nav) */
+/* Header */
 header {
     padding: 3rem 0;
+    background-color: var(--header-bg);
 }
 
 header .container {
@@ -53,10 +54,39 @@ header .container {
 }
 
 header .logo a {
-    font-weight: 700;
-    font-size: 1.5rem;
+    font-weight: 500;
+    font-size: 1rem;
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--color-text-light);
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: 1.6em;
+    line-height: 1.6em;
+    vertical-align: middle;
+}
+
+header .logo .byline-default,
+header .logo .byline-hover {
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    white-space: nowrap;
+    line-height: 1.6em;
+}
+
+header .logo .byline-hover {
+    transform: translateY(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header .logo a:hover .byline-default {
+    transform: translateY(-100%);
+}
+
+header .logo a:hover .byline-hover {
+    transform: translateY(0);
 }
 
 header nav ul {
@@ -68,7 +98,7 @@ header nav ul {
 
 header nav a {
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--color-text-light);
     font-weight: 500;
     font-size: 1rem;
     transition: opacity 0.3s ease;
@@ -78,68 +108,28 @@ header nav a:hover {
     opacity: 0.7;
 }
 
-/* Credit Line under Header */
-.credit-line-wrap {
-    padding: 0.5rem 2rem; /* Matches container padding */
-    font-size: 0.85rem;
-    border-bottom: 1px solid var(--color-border); /* Subtle divider */
-    display: flex; /* To align content */
-    align-items: center; /* Vertically center */
-    color: #555;
-}
-
-.credit-line-wrap a {
-    text-decoration: none;
-    color: var(--color-text);
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    height: 1.2em; /* Set height to one line */
-    line-height: 1.2em; /* Ensure text stays within height */
-    vertical-align: middle;
-}
-
-.credit-line-wrap .byline-default,
-.credit-line-wrap .byline-hover {
-    display: block;
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.credit-line-wrap .byline-hover {
-    transform: translateY(100%); /* Start off-screen below */
-    position: absolute; /* Position relative to parent 'a' */
-    top: 0;
-    left: 0;
-}
-
-.credit-line-wrap a:hover .byline-default {
-    transform: translateY(-100%); /* Move default text up */
-}
-
-.credit-line-wrap a:hover .byline-hover {
-    transform: translateY(0); /* Move hover text into view */
-}
-
-
-/* Hero Section (Reverted to original design, with square image) */
+/* Hero Section */
 #hero {
     padding: 8rem 0;
     display: flex;
     align-items: center;
-    border-top: none; /* Remove border-top as it's not needed with simple header */
-    text-align: left; /* Default text align */
+    border-top: none;
+    text-align: left;
+    background-color: var(--header-bg);
+    border-bottom: none; /* No line after hero */
 }
 
 .hero-content {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Two-column layout */
+    grid-template-columns: 2fr 1fr;
     align-items: center;
     gap: 4rem;
 }
 
-.hero-title-wrap { /* Wrapper for the animation */
+.hero-title-wrap {
     overflow: hidden;
-    display: inline-block; /* Essential for animation to work with block text */
+    display: inline-block;
+    vertical-align: middle;
 }
 
 @keyframes reveal {
@@ -148,28 +138,32 @@ header nav a:hover {
 }
 
 .hero-text h1 {
-    font-size: 4.5rem;
+    font-size: 5.5rem;
     font-weight: 700;
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.1;
+    color: var(--color-text-light);
     animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     animation-fill-mode: forwards;
 }
 
 .hero-text p {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 400;
-    margin-top: 1rem;
-    max-width: 500px;
+    margin-top: 1.5rem;
+    max-width: 550px;
+    color: var(--color-text-light);
 }
 
 .hero-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 0; /* Square shape */
+    width: 280px;
+    height: 280px;
+    border-radius: 0;
     overflow: hidden;
     justify-self: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    background-color: var(--header-bg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    padding: 10px;
 }
 
 .hero-image img {
@@ -180,13 +174,13 @@ header nav a:hover {
 
 /* Sections */
 #about h2, #projects h2, #contact h2 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     text-align: center;
     margin-bottom: 5rem;
 }
 
 #about p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
@@ -215,20 +209,20 @@ header nav a:hover {
 }
 
 .project-card h3 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
 }
 
 .project-card p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 2rem;
 }
 
 .button {
     display: inline-block;
     padding: 0.8rem 1.8rem;
-    border: 2px solid var(--color-text);
-    color: var(--color-text);
+    border: 2px solid var(--color-text-dark);
+    color: var(--color-text-dark);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -237,7 +231,7 @@ header nav a:hover {
 }
 
 .button:hover {
-    background-color: var(--color-text);
+    background-color: var(--color-text-dark);
     color: var(--color-background);
 }
 
@@ -245,7 +239,7 @@ header nav a:hover {
 .macbook-mockup {
     width: 100%;
     aspect-ratio: 16 / 10;
-    background-color: var(--thumbnail-bg); /* Use the new thumbnail background color */
+    background-color: var(--thumbnail-bg);
     border-radius: 20px;
     padding: 2%;
     box-shadow: 0 20px 50px -10px rgba(0,0,0,0.3);
@@ -278,14 +272,17 @@ footer {
     text-align: center;
     padding-top: 6rem;
 }
+
 .project-detail-header h1 {
     font-size: 4rem;
     margin-bottom: 3rem;
 }
+
 .project-hero-mockup {
     max-width: 800px;
     margin: 0 auto 3rem auto;
 }
+
 .project-content {
     max-width: 800px;
     margin: 4rem auto;

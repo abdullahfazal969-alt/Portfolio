@@ -10,7 +10,10 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href="{{ url_for('index') }}">Abdullah Fazal</a>
+                <a href="{{ url_for('index') }}" class="credit-line-link">
+                    <span class="byline-default">© CodebyFazal</span>
+                    <span class="byline-hover">© Abdullah</span>
+                </a>
             </div>
             <nav>
                 <ul>
@@ -21,13 +24,6 @@
             </nav>
         </div>
     </header>
-
-    <div class="credit-line-wrap">
-        <a href="#" class="credit-line-link">
-            <span class="byline-default">© CodebyFazal</span>
-            <span class="byline-hover">© Abdullah Fazal</span>
-        </a>
-    </div>
 
     <main>
         {% block content %}{% endblock %}
