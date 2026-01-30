@@ -23,14 +23,14 @@
     </section>
 
     <section id="projects">
-        <h2>My Projects</h2>
+        <h2>Featured Work</h2>
         <div class="project-list">
             {% for project in projects %}
             <div class="project-card">
                 <div class="project-info">
                     <h3>{{ project.title }}</h3>
                     <p>{{ project.short_description }}</p>
-                    <a href="{{ url_for('project_detail', project_id=project.id) }}" class="button">View Project</a>
+                    <a href="{{ url_for('project_detail', project_id=project.id) }}" class="button">View</a>
                 </div>
                 <div class="project-thumbnail">
                     <div class="macbook-mockup">

@@ -112,18 +112,18 @@ header nav a:hover {
 #hero {
     padding: 8rem 0;
     display: flex;
-    flex-direction: column; /* Changed to column for vertical centering */
-    align-items: center; /* Center content horizontally */
-    justify-content: center; /* Center content vertically */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-top: none;
-    text-align: center; /* Center text */
+    text-align: center;
     background-color: var(--header-bg);
-    border-bottom: none; /* No line after hero */
+    border-bottom: none;
 }
 
 .hero-content {
-    display: block; /* Changed to block for single column */
-    max-width: 900px; /* Constrain width for centering */
+    display: block;
+    max-width: 900px;
 }
 
 .hero-title-wrap {
@@ -138,8 +138,8 @@ header nav a:hover {
 }
 
 .hero-text h1 {
-    font-size: 6.5rem; /* Increased font size */
-    font-weight: 400; /* Reduced font weight */
+    font-size: 6.5rem;
+    font-weight: 400;
     margin: 0;
     line-height: 1.1;
     color: var(--color-text-light);
@@ -148,16 +148,15 @@ header nav a:hover {
 }
 
 .hero-text p {
-    font-size: 2rem; /* Increased font size */
+    font-size: 2rem;
     font-weight: 400;
-    margin: 1.5rem auto 0 auto; /* Center text */
-    max-width: 800px; /* Constrain width for centering */
+    margin: 1.5rem auto 0 auto;
+    max-width: 800px;
     color: var(--color-text-light);
 }
 
-/* Removed hero-image styles */
 .hero-image {
-    display: none; /* Ensure image is not displayed */
+    display: none;
 }
 
 /* Sections */
@@ -183,9 +182,15 @@ header nav a:hover {
 
 .project-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
     align-items: center;
+    justify-content: center;
+}
+
+.project-thumbnail {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .project-card:nth-child(even) .project-info {
@@ -197,12 +202,12 @@ header nav a:hover {
 }
 
 .project-card h3 {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
 }
 
 .project-card p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
 }
 
@@ -223,28 +228,38 @@ header nav a:hover {
     color: var(--color-background);
 }
 
-/* MacBook Mockup */
+/* Tablet Mockup */
 .macbook-mockup {
+    position: relative;
     width: 100%;
-    aspect-ratio: 16 / 10;
-    background-color: var(--thumbnail-bg);
-    border-radius: 20px;
-    padding: 2%;
-    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.3);
+    margin: 0 auto;
+    background: #111;
+    border-radius: 24px;
+    padding: 12px;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+    box-sizing: border-box; /* Fix for overflow */
 }
 
 .macbook-screen {
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    background: #000;
+    border-radius: 12px;
+    padding-bottom: 75%; /* 4:3 Aspect Ratio */
     overflow: hidden;
 }
 
 .macbook-screen img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.macbook-base {
+    display: none;
 }
 
 /* Footer */
