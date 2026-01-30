@@ -167,47 +167,50 @@ header nav a:hover {
 #about h2, #projects h2, #contact h2 {
     font-size: 3.5rem;
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     font-weight: 400;
 }
 
 .about-content {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1rem;
     align-items: center;
+}
+
+.about-text {
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 .about-text p {
     font-size: 1.2rem;
-    text-align: left;
-    margin: 0;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 500px;
 }
 
 .about-image {
     justify-self: center;
+    margin: 0;
+    padding: 0;
 }
 
 .about-image img {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
 
 #projects h2 {
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
-
-#about p {
-    font-size: 1.2rem;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
 
 /* Projects Section */
 .project-list {
@@ -231,6 +234,7 @@ header nav a:hover {
 .project-thumbnail {
     max-width: 100%;
     overflow-x: hidden;
+    margin-top: 2rem;
 }
 
 .project-card:nth-child(even) .project-info {
@@ -243,6 +247,7 @@ header nav a:hover {
 
 .project-card h3 {
     font-size: 2.2rem;
+    font-weight: 400; /* Reduced font weight */
     margin-bottom: 1rem;
 }
 
@@ -253,7 +258,7 @@ header nav a:hover {
 
 .button {
     display: inline-block;
-    padding: 0.8rem 1.8rem;
+    padding: 0.7rem 1.5rem; /* Reduced padding */
     border: 2px solid var(--color-text-dark);
     color: var(--color-text-dark);
     text-decoration: none;
