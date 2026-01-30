@@ -171,6 +171,31 @@ header nav a:hover {
     font-weight: 400;
 }
 
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.about-text p {
+    font-size: 1.2rem;
+    text-align: left;
+    margin: 0;
+}
+
+.about-image {
+    justify-self: center;
+}
+
+.about-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
 #projects h2 {
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -253,7 +278,6 @@ header nav a:hover {
     padding: 12px;
     box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
     box-sizing: border-box;
-    /* Removed transform: translateX(-5%); */
 }
 
 .macbook-screen {

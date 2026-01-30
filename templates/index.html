@@ -17,9 +17,18 @@
     </section>
 
     <section id="about">
-        <h2>About Me</h2>
-        <p>This is a placeholder for your "About Me" section. You can describe your skills, interests, and what you're passionate about here.</p>
-        <p>I'm constantly exploring new technologies and building projects to expand my knowledge in AI and software development.</p>
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>This is a placeholder for your "About Me" section. You can describe your skills, interests, and what you're passionate about here.</p>
+                    <p>I'm constantly exploring new technologies and building projects to expand my knowledge in AI and software development.</p>
+                </div>
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='images/profile/profile.png') }}" alt="Abdullah Fazal">
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="projects">
