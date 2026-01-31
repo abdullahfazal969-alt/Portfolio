@@ -36,7 +36,9 @@
             </div>
         </header>
 
-        <main>{% block content %}{% endblock %}</main>
+        {# ---------- content from child templates will be inserted here
+        ---------- #} {% block content %} {% endblock %}
+
         <footer class="site-footer" role="contentinfo" aria-label="Site footer">
             <div class="footer-top">
                 <div class="footer-left">
@@ -51,12 +53,7 @@
                 </div>
 
                 <div class="footer-right">
-                    <div class="cta-line-container" aria-hidden="true">
-                        <div class="line"></div>
-                        <button class="cta-circle" aria-label="Get in touch">
-                            Get in touch
-                        </button>
-                    </div>
+                    <!-- CTA removed as requested -->
 
                     <div class="contact-pills" role="list">
                         <a
