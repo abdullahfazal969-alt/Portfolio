@@ -1,67 +1,92 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %}Home - My Portfolio{% endblock %} {%
+block content %}
+<section id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-title-wrap">
+                    <h1>Abdullah Fazal</h1>
+                </div>
+                <p>
+                    Exploring Digital Full Time Equivalents (FTE) instead of
+                    Saas products.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-{% block title %}Home - My Portfolio{% endblock %}
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    This is a placeholder for your "About Me" section. You can
+                    describe your skills, interests, and what you're passionate
+                    about here.
+                </p>
+                <p>
+                    I'm constantly exploring new technologies and building
+                    projects to expand my knowledge in AI and software
+                    development.
+                </p>
+            </div>
+            <div class="about-image">
+                <img
+                    src="{{ url_for('static', filename='images/profile/profile.png') }}"
+                    alt="Abdullah Fazal"
+                />
+            </div>
+        </div>
+    </div>
+</section>
 
-{% block content %}
-    <section id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-title-wrap">
-                        <h1>Abdullah Fazal</h1>
+<section id="projects">
+    <h2>Featured Work</h2>
+    <div class="project-list">
+        {% for project in projects %}
+        <div class="project-card">
+            <div class="project-info">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.short_description }}</p>
+                <a
+                    href="{{ url_for('project_detail', project_id=project.id) }}"
+                    class="button"
+                    >View</a
+                >
+            </div>
+            <div class="project-thumbnail">
+                <div class="macbook-mockup">
+                    <div class="macbook-screen">
+                        {% if project.image %}
+                        <img
+                            src="{{ url_for('static', filename=project.image) }}"
+                            alt="{{ project.title }} Thumbnail"
+                        />
+                        {% else %}
+                        <img
+                            src="{{ url_for('static', filename='images/placeholder.png') }}"
+                            alt="Placeholder Thumbnail"
+                        />
+                        {% endif %}
                     </div>
-                    <p>Figuring Out Digital FTE’s instead of Saas products.</p>
                 </div>
             </div>
         </div>
-    </section>
+        {% else %}
+        <p>No projects yet. Check back soon!</p>
+        {% endfor %}
+    </div>
+</section>
 
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>This is a placeholder for your "About Me" section. You can describe your skills, interests, and what you're passionate about here.</p>
-                    <p>I'm constantly exploring new technologies and building projects to expand my knowledge in AI and software development.</p>
-                </div>
-                <div class="about-image">
-                    <img src="{{ url_for('static', filename='images/profile/profile.png') }}" alt="Abdullah Fazal">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Featured Work</h2>
-        <div class="project-list">
-            {% for project in projects %}
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>{{ project.title }}</h3>
-                    <p>{{ project.short_description }}</p>
-                    <a href="{{ url_for('project_detail', project_id=project.id) }}" class="button">View</a>
-                </div>
-                <div class="project-thumbnail">
-                    <div class="macbook-mockup">
-                        <div class="macbook-screen">
-                            {% if project.image %}
-                                <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }} Thumbnail">
-                            {% else %}
-                                <img src="{{ url_for('static', filename='images/placeholder.png') }}" alt="Placeholder Thumbnail">
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            <p>No projects yet. Check back soon!</p>
-            {% endfor %}
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out to me via email at <a href="mailto:your.email@example.com">your.email@example.com</a> or connect with me on LinkedIn.</p>
-        <p>This is a placeholder for a contact form or other contact details.</p>
-    </section>
+<section id="contact">
+    <h2>Contact Me</h2>
+    <p>
+        Feel free to reach out to me via email at
+        <a href="mailto:your.email@example.com">your.email@example.com</a> or
+        connect with me on LinkedIn.
+    </p>
+    <p>This is a placeholder for a contact form or other contact details.</p>
+</section>
 {% endblock %}
