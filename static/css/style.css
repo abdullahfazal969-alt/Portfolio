@@ -322,101 +322,290 @@ header nav a:hover {
     display: none;
 }
 
-/* Footer */
-footer {
-    background-color: var(--footer-bg);
-    color: var(--footer-text-primary);
-    padding: 6rem 0 2rem 0; /* Adjust padding for top and bottom */
+:root {
+    --footer-accent: var(--footer-accent, #4b53ff);
 }
 
-.footer-main-container {
+/* Main footer containers (old selector + new selector) */
+footer,
+.site-footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text-primary);
+    padding: 56px 80px; /* matches inspirant spacing */
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* inner container: keep your existing max-width and padding */
+.footer-main-container,
+.site-footer .footer-top,
+.site-footer .footer-main-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3.5rem;
 }
 
-.footer-top-section {
+/* top row - adapt both class names */
+.footer-top-section,
+.site-footer .footer-top {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Changed to center for vertical alignment */
-    padding-bottom: 4rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-bottom: 2.5rem;
 }
 
-.footer-profile-and-heading {
+/* Left side: avatar + large heading */
+.footer-profile-and-heading,
+.site-footer .footer-left {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    min-width: 0;
 }
 
-.footer-profile-pic {
-    width: 60px;
-    height: 60px;
+/* Avatar wrappers (old/new) */
+.footer-profile-pic,
+.avatar {
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--footer-text-primary);
+    display: block;
 }
 
-.footer-profile-and-heading h1 {
-    font-size: 3rem;
-    font-weight: 400;
-    color: var(--footer-text-primary);
-    margin: 0;
-    line-height: 1.1;
+/* If you want the thicker ring around avatar like inspirant */
+.footer-profile-pic,
+.site-footer .avatar {
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
 }
 
-.footer-contact-details {
+/* If you used a container around avatar */
+.avatar-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    padding: 4px;
     display: flex;
-    flex-direction: row; /* Changed to row for horizontal alignment */
-    gap: 1.5rem; /* Spacing between buttons */
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.03),
+        rgba(255, 255, 255, 0.01)
+    );
 }
 
-.footer-contact-link {
-    color: var(--footer-text-primary); /* White text */
-    background-color: var(--footer-link-bg); /* Light gray background */
+/* Heading: keep your existing H1 but scale it bigger for the display look */
+.footer-profile-and-heading h1,
+.site-footer .footer-title {
+    margin: 0;
+    font-weight: 600;
+    color: var(--footer-text-primary);
+    line-height: 0.94;
+    letter-spacing: -1px;
+    /* big display heading that scales: */
+    font-size: clamp(48px, 9vw, 140px);
+    font-family: "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Right side: contact details or CTA + pills */
+.footer-contact-details,
+.site-footer .footer-right,
+.site-footer .contact-pills {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* pill-style links (new) — also re-style your existing contact-link to use pill look */
+.footer-contact-link,
+.pill,
+.site-footer .pill {
+    color: var(--footer-text-primary);
+    background-color: var(--footer-link-bg);
     text-decoration: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 30px; /* Rounded corners */
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
-    white-space: nowrap; /* Prevent text wrapping inside button */
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    white-space: nowrap;
+    transition:
+        transform 0.12s ease,
+        background-color 0.18s;
 }
 
-.footer-contact-link:hover {
-    background-color: #606060; /* Slightly darker on hover */
+/* hover */
+.footer-contact-link:hover,
+.pill:hover {
+    transform: translateY(-3px);
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
-.footer-bottom-section {
+/* Line + large circular CTA (inspirant) - add this below your contact area */
+.cta-line-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 0.25rem;
+}
+.cta-line-container .line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.03);
+    margin-right: 140px; /* leave space for CTA circle */
+}
+
+/* CTA circle button */
+.cta-circle {
+    position: absolute;
+    right: 0;
+    transform: translateX(50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: none;
+    background: var(--footer-accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 40px rgba(75, 83, 255, 0.12);
+    z-index: 5;
+}
+
+/* thin rule under top area - mirror your previous border-bottom */
+.footer-hr,
+footer hr {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.03);
+    margin: 28px 0;
+}
+
+/* bottom row */
+.footer-bottom-section,
+.site-footer .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px;
     flex-wrap: wrap;
-    gap: 2rem;
-    font-size: 0.9rem;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    font-size: 0.95rem;
 }
 
-.footer-copyright p {
+/* meta items */
+.footer-copyright p,
+.site-footer .meta-item span {
     margin: 0;
     color: var(--footer-text-secondary);
+    font-weight: 600;
 }
-
-.footer-socials {
+.site-footer .meta-item {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
     display: flex;
-    gap: 1.5rem;
+    flex-direction: column;
+    gap: 6px;
+}
+.site-footer .meta-item strong {
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1px;
 }
 
-.footer-socials a {
+/* socials (old/new) */
+.footer-socials,
+.site-footer .socials {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+.footer-socials a,
+.site-footer .socials a {
     color: var(--footer-text-secondary);
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    transition: color 0.18s ease;
+}
+.footer-socials a:hover,
+.site-footer .socials a:hover {
+    color: var(--footer-text-primary);
 }
 
-.footer-socials a:hover {
-    color: var(--footer-text-primary);
+/* Responsive: stack on smaller screens and reduce CTA */
+@media (max-width: 980px) {
+    footer,
+    .site-footer {
+        padding: 40px 28px;
+    }
+
+    .footer-top-section,
+    .site-footer .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .cta-line-container .line {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .cta-circle {
+        position: relative;
+        transform: none;
+        right: auto;
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 8px;
+    }
+
+    .footer-contact-details,
+    .site-footer .contact-pills {
+        justify-content: flex-start;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .footer-profile-pic,
+    .avatar {
+        width: 54px;
+        height: 54px;
+    }
+
+    .footer-profile-and-heading h1,
+    .site-footer .footer-title {
+        font-size: clamp(36px, 10vw, 84px);
+    }
+
+    .footer-bottom-section,
+    .site-footer .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+/* small utility: hide CTA circle if not needed */
+.site-footer .cta-circle[aria-hidden="true"],
+footer .cta-circle[aria-hidden="true"] {
+    display: none;
 }
 
 /* Project Detail Page Adjustments */
