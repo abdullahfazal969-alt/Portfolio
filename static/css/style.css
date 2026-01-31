@@ -361,8 +361,8 @@ footer {
 }
 
 .footer-profile-and-heading h1 {
-    font-size: 4rem;
-    font-weight: 600;
+    font-size: 3rem;
+    font-weight: 400;
     color: var(--footer-text-primary);
     margin: 0;
     line-height: 1.1;
@@ -371,7 +371,7 @@ footer {
 .footer-contact-details {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 2rem;
     align-items: flex-end; /* Align links to the right */
 }
 
@@ -398,6 +398,7 @@ footer {
 .footer-copyright p {
     margin: 0;
     color: var(--footer-text-secondary);
+    align-items: flex-start;
 }
 
 .footer-socials {
