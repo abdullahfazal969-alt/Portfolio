@@ -340,10 +340,11 @@ footer {
 
 .footer-top-section {
     display: flex;
-    justify-content: space-between; /* To push contact details to the right */
-    align-items: flex-end; /* Align items to the bottom */
+    justify-content: space-between;
+    align-items: center; /* Changed to center for vertical alignment */
     padding-bottom: 4rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .footer-profile-and-heading {
@@ -370,27 +371,30 @@ footer {
 
 .footer-contact-details {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: flex-end; /* Align links to the right */
+    flex-direction: row; /* Changed to row for horizontal alignment */
+    gap: 1.5rem; /* Spacing between buttons */
 }
 
 .footer-contact-link {
-    color: var(--footer-text-secondary);
+    color: var(--footer-text-primary); /* White text */
+    background-color: var(--footer-link-bg); /* Light gray background */
     text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px; /* Rounded corners */
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping inside button */
 }
 
 .footer-contact-link:hover {
-    color: var(--footer-text-primary);
+    background-color: #606060; /* Slightly darker on hover */
 }
 
 .footer-bottom-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
     gap: 2rem;
     font-size: 0.9rem;
 }
@@ -398,7 +402,6 @@ footer {
 .footer-copyright p {
     margin: 0;
     color: var(--footer-text-secondary);
-    align-items: flex-start;
 }
 
 .footer-socials {
