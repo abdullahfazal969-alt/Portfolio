@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 :root {
-    --font-primary: 'Poppins', sans-serif;
+    --font-primary: "Poppins", sans-serif;
     --color-background: #ffffff;
     --color-text-dark: #000000;
     --color-text-light: #ffffff;
@@ -27,8 +27,13 @@ body {
     padding: 0 2rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
     color: var(--color-text-dark);
 }
 
@@ -133,8 +138,12 @@ header nav a:hover {
 }
 
 @keyframes reveal {
-  from { transform: translateX(101%); }
-  to { transform: translateX(0); }
+    from {
+        transform: translateX(101%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 
 .hero-text h1 {
@@ -164,7 +173,9 @@ header nav a:hover {
     border-bottom: none;
 }
 
-#about h2, #projects h2, #contact h2 {
+#about h2,
+#projects h2,
+#contact h2 {
     font-size: 3.5rem;
     text-align: center;
     margin-bottom: 3rem;
@@ -202,15 +213,13 @@ header nav a:hover {
     height: 250px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
-
 
 #projects h2 {
     margin-top: 2rem;
     margin-bottom: 3rem;
 }
-
 
 /* Projects Section */
 .project-list {
@@ -281,7 +290,7 @@ header nav a:hover {
     background: #111;
     border-radius: 24px;
     padding: 12px;
-    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
 }
 
@@ -319,11 +328,14 @@ footer {
 .project-detail-header {
     text-align: center;
     padding-top: 6rem;
+    background-color: var(--header-bg);
 }
 
 .project-detail-header h1 {
     font-size: 4rem;
     margin-bottom: 3rem;
+    font-weight: 400;
+    color: var(--color-text-light);
 }
 
 .project-hero-mockup {

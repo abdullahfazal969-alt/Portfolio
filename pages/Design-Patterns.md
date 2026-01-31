@@ -48,5 +48,4 @@ The EventManager acts as the Subject, and agents act as Observers. Agents can su
 
 * Strategy (strategies/):
 The ResearchAgent's behavior is made flexible by being composed with a ResearchStrategy object. We have implemented several concrete strategies (StandardResearch, DeepDiveResearch), and the agent can either be assigned one or select one dynamically. This allows its core algorithm to be swapped out easily.
-
 [Link to GitHub Repository](https://github.com/abdullahfazal969-alt/Design_Patterns/)
