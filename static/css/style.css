@@ -392,8 +392,8 @@ footer,
 /* Avatar wrappers (old/new) */
 .footer-profile-pic,
 .avatar {
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
@@ -408,8 +408,8 @@ footer,
 
 /* If you used a container around avatar */
 .avatar-wrap {
-    width: 72px;
-    height: 72px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     padding: 4px;
     display: flex;
@@ -426,12 +426,12 @@ footer,
 .footer-profile-and-heading h1,
 .site-footer .footer-title {
     margin: 0;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--footer-text-primary);
     line-height: 0.94;
     letter-spacing: -1px;
     /* big display heading that scales: */
-    font-size: clamp(48px, 9vw, 140px);
+    font-size: clamp(42px, 6vw, 88px);
     font-family: "Neue Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -450,24 +450,28 @@ footer,
 .pill,
 .site-footer .pill {
     color: var(--footer-text-primary);
-    background-color: var(--footer-link-bg);
+    background-color: var(--footer-bg); /* same as footer */
     text-decoration: none;
-    padding: 0.85rem 1.5rem;
+    padding: 0.85rem 1.6rem;
     border-radius: 999px;
     font-size: 0.95rem;
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.25); /* subtle outline */
     white-space: nowrap;
     transition:
-        transform 0.12s ease,
-        background-color 0.18s;
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
 }
 
 /* hover */
 .footer-contact-link:hover,
 .pill:hover {
+    background-color: var(--footer-accent); /* blue */
+    border-color: var(--footer-accent);
+    color: #fff;
     transform: translateY(-3px);
-    background-color: rgba(255, 255, 255, 0.04);
 }
 
 /* Line + large circular CTA (inspirant) - add this below your contact area */
@@ -482,7 +486,7 @@ footer,
 .cta-line-container .line {
     flex: 1;
     height: 1px;
-    background: rgba(255, 255, 255, 0.03);
+    background-color: rgba(255, 255, 255, 0.03);
     margin-right: 140px; /* leave space for CTA circle */
 }
 
