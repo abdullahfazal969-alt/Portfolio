@@ -222,7 +222,7 @@ header nav a:hover {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 #projects {
-    background-color:rgb(235, 236, 237)
+    background-color: rgb(235, 236, 237);
 }
 #projects h2 {
     margin-top: 2rem;
@@ -295,8 +295,7 @@ header nav a:hover {
     color: var(--color-background);
 }
 body.project-page header {
-    background-color:rgb(235, 236, 237)
-
+    background-color: rgb(235, 236, 237);
 }
 body.project-page a {
     color: var(--color-text-dark);
@@ -305,13 +304,20 @@ body.project-page a {
 }
 
 body.project-page a:hover {
-    color: var(--color-text-dark);
-    text-decoration-color:rgb(235, 236, 237)
+    color: var(--color-text-light);
+    text-decoration-color: rgb(235, 236, 237);
+}
+body.project-page .project-navigation {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 0rem;
 }
 .project-detail-header {
     text-align: center;
-    padding-top: 6rem;
-    background-color:rgb(235, 236, 237)
+    padding-top: 1rem;
+    border-bottom: none;
+    background-color: rgb(235, 236, 237);
 }
 
 .project-detail-header h1 {
@@ -619,7 +625,6 @@ footer hr {
 footer .cta-circle[aria-hidden="true"] {
     display: none;
 }
-
 /* ===== Polished MacBook base + frame + screen (drop-in replacement) ===== */
 
 /* Frame wrapper (aluminum body) */
@@ -631,12 +636,11 @@ footer .cta-circle[aria-hidden="true"] {
     padding: 16px; /* outer frame thickness */
     box-sizing: border-box;
     background: linear-gradient(180deg, #e6e8eb 0%, #d1d2d4 70%); /* aluminum */
-    position: relative;
-    /* stronger ambient shadow for depth */
-
+    position: relative; /* stronger ambient shadow for depth */
+}
 
 /* Inner black bezel + screen */
-.macbook-screen {
+.macbook-frame .macbook-screen {
     position: relative;
     width: 100%;
     background: #000;
@@ -650,7 +654,7 @@ footer .cta-circle[aria-hidden="true"] {
 }
 
 /* screen image */
-.macbook-screen img {
+.macbook-frame .macbook-screen img {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -660,7 +664,7 @@ footer .cta-circle[aria-hidden="true"] {
 }
 
 /* glass sheen */
-.macbook-screen .screen-sheen {
+.macbook-frame .macbook-screen .screen-sheen {
     pointer-events: none;
     position: absolute;
     left: -10%;
@@ -681,7 +685,7 @@ footer .cta-circle[aria-hidden="true"] {
 }
 
 /* tiny camera dot (top center) */
-.macbook-screen::before {
+.macbook-frame .macbook-screen::before {
     content: "";
     position: absolute;
     top: 10px;
@@ -699,20 +703,38 @@ footer .cta-circle[aria-hidden="true"] {
     z-index: 6;
 }
 
-/* ===== Polished Base (keyboard slab + hinge + shadow) ===== */
-
 /* Base slab container */
-.macbook-base {
+.macbook-frame .macbook-base {
     width: 100%;
     border-radius: 0 0 14px 14px;
     position: relative;
     z-index: 1;
     overflow: hidden;
     /* default will be small in grid, larger on detail (modifiers) */
+    background: linear-gradient(180deg, #e9e9ea 0%, #cfcfcf 100%);
+    /* two layered patterns:
+90      - horizontal rule lines for subtle rows
+91      - vertical repeating columns for key gaps
+92     */
+    background-image:
+        repeating-linear-gradient(
+            transparent 0 14px,
+            rgba(0, 0, 0, 0.02) 14px 15px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.02) 0 10px,
+            transparent 10px 100%
+        );
+    background-size:
+        100% 14px,
+        14px 100%;
+    opacity: 0.98;
+    transition: transform 0.18s ease;
 }
 
 /* hinge shadow (thin band directly under screen) */
-.macbook-base::before {
+.macbook-frame .macbook-base::before {
     content: "";
     position: absolute;
     top: -8px;
@@ -729,7 +751,7 @@ footer .cta-circle[aria-hidden="true"] {
 }
 
 /* cast shadow under base */
-.macbook-base::after {
+.macbook-frame .macbook-base::after {
     content: "";
     position: absolute;
     left: 6%;
@@ -745,33 +767,6 @@ footer .cta-circle[aria-hidden="true"] {
     filter: blur(10px);
     z-index: 0;
     opacity: 0.95;
-}
-
-/* ===== Keyboard texture / key rows (CSS-only) =====
-   Uses repeating-linear-gradient to simulate key gaps.
-   We use different sizes for grid vs detail via modifiers below.
-*/
-.macbook-base{
-    background: linear-gradient(180deg, #e9e9ea 0%, #cfcfcf 100%);
-    /* two layered patterns:
-     - horizontal rule lines for subtle rows
-     - vertical repeating columns for key gaps
-  */
-    background-image:
-        repeating-linear-gradient(
-            transparent 0 14px,
-            rgba(0, 0, 0, 0.02) 14px 15px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.02) 0 10px,
-            transparent 10px 100%
-        );
-    background-size:
-        100% 14px,
-        14px 100%;
-    opacity: 0.98;
-    transition: transform 0.18s ease;
 }
 
 /* small grid variant: minimal base hint */
@@ -790,21 +785,8 @@ footer .cta-circle[aria-hidden="true"] {
     opacity: 0.95;
 }
 
-/* detail variant: full base with visible keyboard feel */
-.macbook-mockup.macbook--detail .macbook-base {
-    display: block;
-    height: 52px;
-    margin-top: -12px;
-    border-radius: 0 0 14px 14px;
-    background-size:
-        100% 14px,
-        16px 100%;
-    box-shadow: 0 18px 64px rgba(10, 12, 14, 0.22);
-    opacity: 1;
-}
-
 /* optional: accent line between screen and base (very subtle) */
-.macbook-base .hinge-accent {
+.macbook-frame .macbook-base .hinge-accent {
     display: block;
     width: 60px;
     height: 4px;
@@ -814,9 +796,8 @@ footer .cta-circle[aria-hidden="true"] {
     opacity: 0.6;
 }
 
-
-/* ===== ensure screen visually connects to base ===== */
-.macbook-screen {
+/* ensure screen visually connects to base */
+.macbook-frame .macbook-screen {
     box-shadow:
         0 6px 18px rgba(0, 0, 0, 0.35) inset,
         0 8px 18px rgba(0, 0, 0, 0.15);
@@ -844,12 +825,12 @@ footer .cta-circle[aria-hidden="true"] {
     .macbook-mockup.macbook--detail .macbook-base {
         height: 44px;
     }
-    .macbook-base::after {
+    .macbook-frame .macbook-base::after {
         bottom: -12px;
         height: 20px;
         filter: blur(8px);
     }
-    .macbook-screen .screen-sheen {
+    .macbook-frame .macbook-screen .screen-sheen {
         opacity: 0.45;
         transform: rotate(-16deg) translateY(-4%);
     }
