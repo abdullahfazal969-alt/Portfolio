@@ -221,7 +221,9 @@ header nav a:hover {
     object-fit: cover;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
-
+#projects {
+    background-color:rgb(235, 236, 237)
+}
 #projects h2 {
     margin-top: 2rem;
     margin-bottom: 3rem;
@@ -232,6 +234,11 @@ header nav a:hover {
     display: flex;
     flex-direction: column;
     gap: 6rem;
+}
+#projects .project-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
 }
 
 .project-card {
@@ -292,7 +299,7 @@ header nav a:hover {
 .project-detail-header {
     text-align: center;
     padding-top: 6rem;
-    background-color: var(--header-bg);
+    background-color:rgb(235, 236, 237)
 }
 
 .project-detail-header h1 {
