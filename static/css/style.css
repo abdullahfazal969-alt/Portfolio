@@ -836,16 +836,23 @@ footer .cta-circle[aria-hidden="true"] {
     }
 }
 /* ========================================= */
-/* ===== Responsive Adjustments (Start) ===== */
+/* === Comprehensive Responsive Styles === */
 /* ========================================= */
 
-/* Tablet and smaller laptops (max-width: 980px) */
+/*
+ * 1. Tablet and Smaller Laptops
+ * Breakpoint: 980px and below
+ */
 @media (max-width: 980px) {
     .container {
         padding: 0 1.5rem; /* Slightly less padding on smaller screens */
     }
 
-    /* Header */
+    section {
+        padding: 4rem 0; /* Reduce vertical padding on sections */
+    }
+
+    /* --- Header --- */
     header .container {
         flex-direction: column; /* Stack logo/credit and nav vertically */
         gap: 1.5rem;
@@ -853,10 +860,13 @@ footer .cta-circle[aria-hidden="true"] {
     header nav ul {
         flex-direction: column; /* Stack nav links vertically */
         gap: 1rem;
-        margin-top: 1rem;
+        padding-left: 0; /* Remove default ul padding */
     }
 
-    /* Hero Section */
+    /* --- Hero Section --- */
+    #hero {
+        padding: 6rem 0; /* Reduce hero padding */
+    }
     .hero-text h1 {
         font-size: 4.5rem; /* Reduce hero title size */
     }
@@ -865,15 +875,13 @@ footer .cta-circle[aria-hidden="true"] {
         max-width: 600px;
     }
 
-    /* Section Headings */
-    #about h2,
-    #projects h2,
-    #contact h2 {
+    /* --- Section Headings --- */
+    #about h2, #projects h2, #contact h2 {
         font-size: 3rem; /* Reduce main section heading size */
         margin-bottom: 2rem;
     }
 
-    /* About Section */
+    /* --- About Section --- */
     .about-content {
         grid-template-columns: 1fr; /* Stack text and image */
         gap: 3rem;
@@ -890,7 +898,7 @@ footer .cta-circle[aria-hidden="true"] {
         height: 200px;
     }
 
-    /* Projects Section */
+    /* --- Projects Section --- */
     .project-card {
         grid-template-columns: 1fr; /* Stack project info and thumbnail */
         gap: 3rem;
@@ -910,18 +918,23 @@ footer .cta-circle[aria-hidden="true"] {
     .project-card p {
         font-size: 0.9rem; /* Reduce project description size */
     }
+
+    /* --- Footer --- */
+    /* Incorporating user's existing footer responsive styles and adding to them */
     footer,
     .site-footer {
         padding: 40px 28px;
     }
+
     .site-footer .footer-top {
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
     }
+
     .site-footer .contact-pills {
         justify-content: flex-start;
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Allow pills to wrap */
         width: 100%;
         gap: 0.75rem;
     }
@@ -932,7 +945,11 @@ footer .cta-circle[aria-hidden="true"] {
     }
 }
 
-/* Mobile phones (max-width: 700px) */
+
+/*
+ * 2. Mobile Phones
+ * Breakpoint: 700px and below
+ */
 @media (max-width: 700px) {
     .container {
         padding: 0 1rem; /* Further reduce padding */
@@ -949,37 +966,36 @@ footer .cta-circle[aria-hidden="true"] {
         gap: 0.8rem;
     }
 
-    /* Hero Section */
+    /* --- Hero Section --- */
     #hero {
-        padding: 6rem 0; /* Reduce hero padding */
+        padding: 5rem 0;
     }
     .hero-text h1 {
-        font-size: 3rem; /* Further reduce hero title size */
+        font-size: 3rem;
+        line-height: 1.2;
     }
     .hero-text p {
-        font-size: 1.2rem; /* Further reduce hero description size */
+        font-size: 1.2rem;
     }
 
-    /* Section Headings */
-    #about h2,
-    #projects h2,
-    #contact h2 {
-        font-size: 2.5rem; /* Further reduce section heading size */
+    /* --- Section Headings --- */
+    #about h2, #projects h2, #contact h2 {
+        font-size: 2.5rem;
         margin-bottom: 1.5rem;
     }
 
-    /* About Section */
+    /* --- About Section --- */
     .about-content {
         gap: 2rem;
     }
     .about-image img {
-        width: 150px; /* Further reduce profile pic size */
+        width: 150px;
         height: 150px;
     }
 
-    /* Projects Section */
+    /* --- Projects Section --- */
     .project-list {
-        gap: 4rem; /* Reduce gap between project cards */
+        gap: 4rem;
     }
     .project-card h3 {
         font-size: 1.8rem;
@@ -987,17 +1003,9 @@ footer .cta-circle[aria-hidden="true"] {
     .project-card p {
         font-size: 0.85rem;
     }
+
+    /* --- Footer --- */
     .site-footer .footer-title {
         font-size: clamp(36px, 10vw, 50px); /* Adjust clamp max for mobile */
     }
-
-    /* Footer - existing media query already handles most of this */
-    /* Ensuring general section padding is also reduced */
-    section {
-        padding: 4rem 0;
-    }
 }
-
-/* ========================================= */
-/* ====== Responsive Adjustments (End) ====== */
-/* ========================================= */
