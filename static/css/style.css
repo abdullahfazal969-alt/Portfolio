@@ -876,7 +876,9 @@ footer .cta-circle[aria-hidden="true"] {
     }
 
     /* --- Section Headings --- */
-    #about h2, #projects h2, #contact h2 {
+    #about h2,
+    #projects h2,
+    #contact h2 {
         font-size: 3rem; /* Reduce main section heading size */
         margin-bottom: 2rem;
     }
@@ -945,7 +947,6 @@ footer .cta-circle[aria-hidden="true"] {
     }
 }
 
-
 /*
  * 2. Mobile Phones
  * Breakpoint: 700px and below
@@ -979,7 +980,9 @@ footer .cta-circle[aria-hidden="true"] {
     }
 
     /* --- Section Headings --- */
-    #about h2, #projects h2, #contact h2 {
+    #about h2,
+    #projects h2,
+    #contact h2 {
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
     }
