@@ -288,49 +288,17 @@ header nav a:hover {
     color: var(--color-background);
 }
 
-/* Tablet Mockup */
-.macbook-mockup {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-    background: #111;
-    border-radius: 24px;
-    padding: 12px;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
-}
-
-.macbook-screen {
-    position: relative;
-    z-index: 2;
-    background: #000;
-    border-radius: 12px;
-    padding-bottom: 75%;
-    overflow: hidden;
-}
-
-.macbook-screen img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.macbook-base {
-    display: none;
-}
-
 /* Project Detail Page Adjustments */
 .project-detail-header {
     text-align: center;
     padding-top: 6rem;
+    background-color: var(--header-bg);
 }
 
 .project-detail-header h1 {
     font-size: 4rem;
     margin-bottom: 3rem;
+    font-weight: 400;
 }
 
 .project-hero-mockup {
@@ -631,4 +599,225 @@ footer hr {
 .site-footer .cta-circle[aria-hidden="true"],
 footer .cta-circle[aria-hidden="true"] {
     display: none;
+}
+
+/* ===================== Realistic MacBook Mockup ===================== */
+/* Replace previous .macbook-* rules with this block (paste at end of style.css) */
+
+.macbook-mockup {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 auto;
+}
+
+/* Frame: aluminium-like bezel surrounding the black screen bezel */
+.macbook-frame {
+    width: 100%;
+    max-width: 820px; /* default max for large detail layout, reduced for grid via modifier */
+    margin: 0 auto;
+    border-radius: 18px;
+    padding: 18px; /* outer frame thickness */
+    box-sizing: border-box;
+    background: linear-gradient(
+        180deg,
+        #e6e8eb 0%,
+        #cfcfd1 100%
+    ); /* subtle aluminum */
+    box-shadow:
+        0 30px 80px rgba(18, 20, 22, 0.28),
+        /* ambient shadow */ inset 0 1px 0 rgba(255, 255, 255, 0.6); /* top highlight */
+    position: relative;
+}
+
+/* inner screen (black bezel) */
+.macbook-screen {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    /* Aspect ratio roughly 16:10 (height = 62.5% of width) */
+    padding-bottom: 62.5%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) inset;
+}
+
+/* actual image fills the screen */
+.macbook-screen img {
+    position: absolute;
+    inset: 0; /* top:0; left:0; right:0; bottom:0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* subtle glass sheen on top of screen */
+.macbook-screen .screen-sheen {
+    pointer-events: none;
+    position: absolute;
+    left: -10%;
+    top: -35%;
+    width: 120%;
+    height: 70%;
+    transform: rotate(-18deg);
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.22),
+        rgba(255, 255, 255, 0.06) 40%,
+        rgba(255, 255, 255, 0.02) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+/* small camera dot - centered at top of inner bezel (tiny and subtle) */
+.macbook-screen::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.35)
+    );
+    border-radius: 50%;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02); /* tiny highlight */
+    opacity: 0.8;
+    z-index: 4;
+}
+
+/* keyboard/base hint (thin slab under screen) */
+.macbook-base {
+    width: 100%;
+    height: 34px; /* visible base height */
+    margin-top: 16px;
+    border-radius: 0 0 14px 14px;
+    background: linear-gradient(180deg, #dfe2e5 0%, #c6c8cb 100%);
+    box-shadow: 0 8px 30px rgba(18, 20, 22, 0.18);
+    position: relative;
+    overflow: hidden;
+    /* subtle key row texture */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    background-size:
+        100% 14px,
+        14px 100%;
+    opacity: 0.95;
+    display: none; /* hidden for small/grid, show on detail via modifier */
+}
+
+/* -------------- Modifiers: grid vs detail -------------- */
+
+/* Grid (projects list) variant — smaller, tighter, no base by default */
+.macbook-mockup.macbook--grid .macbook-frame {
+    max-width: 420px; /* cards stay compact */
+    padding: 12px;
+    border-radius: 14px;
+    box-shadow: 0 12px 36px rgba(18, 20, 22, 0.22);
+}
+.macbook-mockup.macbook--grid .macbook-screen {
+    padding-bottom: 62.5%;
+    border-radius: 8px;
+}
+.macbook-mockup.macbook--grid .macbook-base {
+    display: none;
+}
+
+/* Detail (project page) variant — bigger, show base for realism */
+.macbook-mockup.macbook--detail .macbook-frame {
+    max-width: 820px; /* large hero */
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 34px 100px rgba(14, 16, 18, 0.36);
+}
+.macbook-mockup.macbook--detail .macbook-screen {
+    padding-bottom: 62.5%;
+    border-radius: 12px;
+}
+.macbook-mockup.macbook--detail .macbook-base {
+    display: block;
+}
+
+/* If you used .project-hero-mockup class, this ensures it behaves as detail */
+.project-hero-mockup.macbook-mockup,
+.macbook-mockup.project-hero-mockup,
+.macbook-mockup.is-detail {
+    /* prefer explicit detail styling */
+}
+.project-hero-mockup .macbook-frame {
+    max-width: 820px;
+}
+
+/* -------------- Fine-tuning for layout containers -------------- */
+.project-thumbnail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ensure the macbook scales nicely inside grid cards */
+.project-card .macbook-mockup.macbook--grid {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Center the hero mockup on project detail header */
+.project-hero-mockup {
+    margin: 0 auto 2rem auto;
+    display: block;
+    text-align: center;
+}
+
+/* -------------- Responsiveness -------------- */
+@media (max-width: 1100px) {
+    .macbook-mockup.macbook--detail .macbook-frame {
+        max-width: 640px;
+        padding: 18px;
+    }
+    .macbook-mockup.macbook--grid .macbook-frame {
+        max-width: 360px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 700px) {
+    /* stack project-card into single column on small screens */
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    .project-card .project-info {
+        order: 1;
+        padding: 0 1rem;
+    }
+    .project-card .project-thumbnail {
+        order: 2;
+        padding: 0 1rem;
+    }
+
+    .macbook-mockup.macbook--grid .macbook-frame {
+        max-width: 100%;
+        padding: 10px;
+        border-radius: 12px;
+    }
+    .macbook-mockup.macbook--grid .macbook-screen {
+        padding-bottom: 62.5%;
+    }
+    .macbook-mockup.macbook--detail .macbook-frame {
+        max-width: 100%;
+    }
+    /* reduce sheen a bit for small screens */
+    .macbook-screen .screen-sheen {
+        opacity: 0.45;
+    }
 }

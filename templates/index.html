@@ -57,19 +57,27 @@ block content %}
                 >
             </div>
             <div class="project-thumbnail">
-                <div class="macbook-mockup">
-                    <div class="macbook-screen">
-                        {% if project.image %}
-                        <img
-                            src="{{ url_for('static', filename=project.image) }}"
-                            alt="{{ project.title }} Thumbnail"
-                        />
-                        {% else %}
-                        <img
-                            src="{{ url_for('static', filename='images/placeholder.png') }}"
-                            alt="Placeholder Thumbnail"
-                        />
-                        {% endif %}
+                <div class="macbook-mockup macbook--grid">
+                    <div class="macbook-frame">
+                        <div class="macbook-screen">
+                            {% if project.image %}
+                            <img
+                                src="{{ url_for('static', filename=project.image) }}"
+                                alt="{{ project.title }} Thumbnail"
+                            />
+                            {% else %}
+                            <img
+                                src="{{ url_for('static', filename='images/placeholder.png') }}"
+                                alt="Placeholder Thumbnail"
+                            />
+                            {% endif %}
+                            <span
+                                class="screen-sheen"
+                                aria-hidden="true"
+                            ></span>
+                        </div>
+                        <!-- small base hint (hidden in grid by default) -->
+                        <div class="macbook-base" aria-hidden="true"></div>
                     </div>
                 </div>
             </div>

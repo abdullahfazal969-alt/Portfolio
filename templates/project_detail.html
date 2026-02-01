@@ -1,31 +1,41 @@
-{% extends "base.html" %}
-
-{% block title %}{{ project.title }} - My Portfolio{% endblock %}
-
-{% block content %}
-    <section class="project-detail-header">
-        <h1>{{ project.title }}</h1>
-        <div class="macbook-mockup project-hero-mockup">
+{% extends "base.html" %} {% block title %}{{ project.title }} - My Portfolio{%
+endblock %} {% block content %}
+<section class="project-detail-header">
+    <h1>{{ project.title }}</h1>
+    <div class="macbook-mockup macbook--detail project-hero-mockup">
+        <div class="macbook-frame">
             <div class="macbook-screen">
                 {% if project.image %}
-                    <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }}">
+                <img
+                    src="{{ url_for('static', filename=project.image) }}"
+                    alt="{{ project.title }}"
+                />
                 {% else %}
-                    <img src="{{ url_for('static', filename='images/placeholder.png') }}" alt="Placeholder Image">
+                <img
+                    src="{{ url_for('static', filename='images/placeholder.png') }}"
+                    alt="Placeholder Image"
+                />
                 {% endif %}
+                <span class="screen-sheen" aria-hidden="true"></span>
             </div>
+            <!-- show base for detail -->
+            <div class="macbook-base" aria-hidden="true"></div>
         </div>
-        <div class="project-tags">
-            {% for tag in project.tags %}
-                <span>{{ tag }}</span>
-            {% endfor %}
-        </div>
-    </section>
+    </div>
 
-    <section class="project-content">
-        {{ project.content | safe }} {# 'safe' is used because project.content is already HTML from markdown conversion #}
-    </section>
+    <div class="project-tags">
+        {% for tag in project.tags %}
+        <span>{{ tag }}</span>
+        {% endfor %}
+    </div>
+</section>
 
-    <section class="project-navigation">
-        <a href="{{ url_for('index') }}" class="button">Back to Projects</a>
-    </section>
+<section class="project-content">
+    {{ project.content | safe }} {# 'safe' is used because project.content is
+    already HTML from markdown conversion #}
+</section>
+
+<section class="project-navigation">
+    <a href="{{ url_for('index') }}" class="button">Back to Projects</a>
+</section>
 {% endblock %}
