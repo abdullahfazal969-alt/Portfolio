@@ -294,8 +294,20 @@ header nav a:hover {
     background-color: var(--color-text-dark);
     color: var(--color-background);
 }
+body.project-page header {
+    background-color:rgb(235, 236, 237)
 
-/* Project Detail Page Adjustments */
+}
+body.project-page a {
+    color: var(--color-text-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+body.project-page a:hover {
+    color: var(--color-text-dark);
+    text-decoration-color:rgb(235, 236, 237)
+}
 .project-detail-header {
     text-align: center;
     padding-top: 6rem;

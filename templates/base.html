@@ -9,16 +9,16 @@
             href="{{ url_for('static', filename='css/style.css') }}"
         />
     </head>
-    <body>
+    <body class="{% block body_class %}{% endblock %}">
         <header>
-            <div class="container">
-                <div class="logo">
-                    <a href="{{ url_for('index') }}" class="credit-line-link">
-                        <span class="byline-default">© CodebyFazal</span>
-                        <span class="byline-hover">© Abdullah</span>
-                    </a>
-                </div>
                 <nav>
+                    <div class="container">
+                        <div class="logo">
+                            <a href="{{ url_for('index') }}" class="credit-line-link">
+                                <span class="byline-default">© CodebyFazal</span>
+                                <span class="byline-hover">© Abdullah</span>
+                            </a>
+                        </div>
                     <ul>
                         <li>
                             <a href="{{ url_for('index') }}#about">About</a>
@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="bottom-right">
-                    <nav class="socials" aria-label="Social links">
+                    < class="socials" aria-label="Social links">
                         <a
                             href="https://www.instagram.com/a._fazal_/"
                             target="_blank"
@@ -103,9 +103,8 @@
                             href="https://www.linkedin.com/in/abdullah-fazal-2985a2298/"
                             target="_blank"
                             rel="noopener"
-                            >LinkedIn</a
-                        >
-                    </nav>
+                            >LinkedIn</a>
+                        </div>
                 </div>
             </div>
         </footer>
