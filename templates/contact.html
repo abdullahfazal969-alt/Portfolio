@@ -41,6 +41,7 @@ block title %}Contact - My Portfolio{% endblock %} {% block content %}
                         name="email"
                         type="email"
                         placeholder="john@doe.com"
+                        required
                     />
                 </div>
 
@@ -95,6 +96,10 @@ block title %}Contact - My Portfolio{% endblock %} {% block content %}
                     hidden
                 ></div>
             </form>
+            <div id="form-result" class="form-result" aria-hidden="true">
+                <div class="success-icon">✓</div>
+                <p>Thanks for your submission</p>
+            </div>
         </div>
 
         <!-- RIGHT: profile pic + contact details -->

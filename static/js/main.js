@@ -263,55 +263,54 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     observer.observe(footer);
 })();
-
-// ---------- Contact form AJAX submit ----------
+//Contact Form Related Javascript
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("contact-form");
+    const resultBox = document.getElementById("form-result");
+
     if (!form) return;
 
-    const resultDiv = document.getElementById("contact-result");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    form.addEventListener("submit", async (ev) => {
-        ev.preventDefault();
+        const name = form.querySelector("[name='name']").value.trim();
+        const email = form.querySelector("[name='email']").value.trim();
+        const message = form.querySelector("[name='message']").value.trim();
 
-        const submitBtn = document.getElementById("contact-submit");
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const message = document.getElementById("message").value.trim();
-
-        if (!name || !message) {
-            resultDiv.textContent = "Please enter your name and message.";
-            resultDiv.style.color = "crimson";
+        if (!name || !email || !message) {
+            alert("Please fill all required fields");
             return;
         }
 
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Sending...";
+        // fade form out
+        form.classList.add("fading");
 
         try {
-            const resp = await fetch(form.action, {
+            await fetch("/submit_contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, message }),
             });
 
-            const data = await resp.json();
-            if (resp.ok && data.ok) {
-                resultDiv.textContent = "Thanks — your message was sent!";
-                resultDiv.style.color = "";
+            // show success message
+            setTimeout(() => {
+                form.style.display = "none";
+                resultBox.classList.add("active");
+                resultBox.setAttribute("aria-hidden", "false");
+            }, 400);
+
+            // after 3 seconds, reset everything
+            setTimeout(() => {
+                resultBox.classList.remove("active");
+                resultBox.setAttribute("aria-hidden", "true");
+
                 form.reset();
-            } else {
-                resultDiv.textContent =
-                    data && data.error ? data.error : "Submission failed.";
-                resultDiv.style.color = "crimson";
-            }
+                form.style.display = "block";
+                form.classList.remove("fading");
+            }, 3400);
         } catch (err) {
-            console.error("Contact submit error", err);
-            resultDiv.textContent = "Network error, please try again later.";
-            resultDiv.style.color = "crimson";
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Send Message";
+            alert("Something went wrong. Please try again.");
+            form.classList.remove("fading");
         }
     });
 });

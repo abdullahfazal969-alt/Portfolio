@@ -97,9 +97,17 @@ def submit_contact():
     name = data.get("name", "") or data.get("full_name", "")
     email = data.get("email", "")
     message = data.get("message", "")
+    # basic presence checks
+    if not name or not email or not message:
+        return jsonify(
+            {"ok": False, "error": "Please provide name, email and message."}
+        ), 400
 
-    if not name or not message:
-        return jsonify({"ok": False, "error": "Please provide name and message."}), 400
+    # basic email sanity check
+    if "@" not in email or "." not in email.split("@")[-1]:
+        return jsonify(
+            {"ok": False, "error": "Please provide a valid email address."}
+        ), 400
 
     # Normalize entry
     entry = {
