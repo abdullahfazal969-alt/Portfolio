@@ -3,9 +3,25 @@ block content %}
 <section id="hero">
     <div class="container">
         <div class="hero-content">
-            <div class="hero-text">
+            <div class="hero-text animate-fade">
                 <div class="hero-title-wrap">
-                    <h1>Abdullah Fazal</h1>
+                    <h1 class="hero-marquee" aria-label="Abdullah Fazal">
+                        <!-- semantic label for screen readers (kept but visually hidden) -->
+                        <span class="hero-marquee__sr">Abdullah Fazal</span>
+
+                        <!-- visible animated viewport — JS will size this so exactly one copy is visible -->
+                        <div class="marquee-viewport" aria-hidden="true">
+                            <div class="marquee-track">
+                                <span class="marquee-item"
+                                    >Abdullah Fazal -</span
+                                >
+                                <span class="marquee-item"
+                                    >Abdullah Fazal -</span
+                                >
+                                <!-- duplicate for seamless loop -->
+                            </div>
+                        </div>
+                    </h1>
                 </div>
                 <p>
                     Exploring Digital Full Time Equivalents (FTE) instead of
@@ -16,7 +32,7 @@ block content %}
     </div>
 </section>
 
-<section id="about">
+<section id="about" class="animate-fade">
     <div class="container">
         <h2>About Me</h2>
         <div class="about-content">
@@ -46,7 +62,7 @@ block content %}
     <h2>Featured Work</h2>
     <div class="project-list">
         {% for project in projects %}
-        <div class="project-card">
+        <div class="project-card animate-fade">
             <div class="project-info">
                 <h3>{{ project.title }}</h3>
                 <p>{{ project.short_description }}</p>

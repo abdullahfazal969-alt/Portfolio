@@ -119,6 +119,29 @@ header nav a:hover {
     opacity: 0.7;
 }
 
+/* NAVBAR: hide on scroll */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    transition:
+        transform 260ms cubic-bezier(0.22, 0.9, 0.27, 1),
+        box-shadow 260ms;
+    will-change: transform;
+}
+
+/* when hidden, move out of view */
+header.nav-hidden {
+    transform: translateY(-110%);
+    box-shadow: none;
+}
+
+/* when solid state (optional visual distinction) */
+header.nav-solid {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(6px);
+}
+
 /* Hero Section */
 #hero {
     padding: 8rem 0;
@@ -625,6 +648,48 @@ footer hr {
 footer .cta-circle[aria-hidden="true"] {
     display: none;
 }
+/* FOOTER SMOOTH TRANSITION */
+.site-footer {
+    position: relative; /* ensure pseudo-element positions relative to footer */
+    transition: background-color 420ms ease;
+    overflow: visible;
+}
+
+/* top fade pseudo-element (initially hidden) */
+.site-footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -70px; /* height of the fade overlapping above footer */
+    height: 70px;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        rgba(235, 235, 235, 0) 0%,
+        rgba(0, 0, 0, 0.06) 30%,
+        rgba(0, 0, 0, 0.12) 60%,
+        var(--footer-bg) 100%
+    );
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+        opacity 520ms ease,
+        transform 420ms ease;
+    z-index: 1;
+}
+
+/* when footer is visible, fade the gradient in */
+.site-footer.footer-visible::before {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* optional: gentle inner top shadow when visible */
+.site-footer.footer-visible {
+    box-shadow: inset 0 24px 60px rgba(0, 0, 0, 0.12);
+}
+
 /* ===== Polished MacBook base + frame + screen (drop-in replacement) ===== */
 
 /* Frame wrapper (aluminum body) */
@@ -1011,4 +1076,198 @@ footer .cta-circle[aria-hidden="true"] {
     .site-footer .footer-title {
         font-size: clamp(36px, 10vw, 50px); /* Adjust clamp max for mobile */
     }
+}
+/* Animation helpers */
+.animate-fade {
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+/* PAGE LOADER - full screen overlay */
+.page-loader {
+    position: fixed;
+    inset: 0; /* top/right/bottom/left 0 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0b0b0b; /* black background */
+    color: #fff;
+    z-index: 2000;
+    opacity: 1;
+    transition:
+        opacity 400ms ease,
+        visibility 400ms ease;
+    visibility: visible;
+}
+
+/* inner card */
+.page-loader__inner {
+    text-align: center;
+    padding: 24px 36px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+}
+
+/* message text */
+.page-loader__message {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+/* hide state */
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* reduced motion users: reduce overlay time/animation */
+@media (prefers-reduced-motion: reduce) {
+    .page-loader {
+        transition: none;
+    }
+}
+
+/* MARQUEE — continuous horizontal loop for hero H1 */
+.hero-marquee {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* hide the extra visual text for screen readers if you want only the marquee visible */
+.hero-marquee__vis {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    color: transparent; /* optional: hide the readable duplicate; keep if you want both */
+    /* if you want visible semantic heading, set color instead of transparent */
+}
+
+/* marquee track */
+.marquee {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+}
+.marquee__track {
+    display: inline-flex;
+    gap: 2.5rem;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marqueeAnim 20s linear infinite;
+}
+
+/* marquee items style */
+.marquee__item {
+    font-size: 2.4rem; /* tune to match your hero size */
+    font-weight: 600;
+    color: var(--color-text-light); /* because hero has dark bg */
+    opacity: 0.95;
+}
+
+/* pause on hover */
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track {
+    animation-play-state: paused;
+}
+
+/* reduced motion: stop animation */
+@media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+        animation: none;
+    }
+}
+
+/* keyframes */
+@keyframes marqueeAnim {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    } /* track repeats duplicated content, move by half */
+}
+
+/* ===== HERO MARQUEE (single visible item) ===== */
+.hero-marquee {
+    display: block;
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+/* screen-reader only label (keeps semantics) */
+.hero-marquee__sr {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Viewport that masks the track; JS will set the exact width to the text width */
+.marquee-viewport {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+/* track holds two identical items side-by-side */
+.marquee-track {
+    display: flex;
+    gap: 0; /* no gap so translate -50% equals one item width */
+    will-change: transform;
+    animation: marqueeAnim var(--marquee-duration, 14s) linear infinite;
+}
+
+/* single visible item styling - match your hero font */
+.marquee-item {
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 6.5rem; /* match your hero h1 size — tune if needed */
+    font-weight: 400; /* keep same weight as before */
+    line-height: 1.06;
+    color: var(--color-text-light);
+    padding: 0 0.25rem;
+}
+
+/* pause on hover */
+.marquee-viewport:hover .marquee-track,
+.marquee-viewport:focus-within .marquee-track {
+    animation-play-state: paused;
+}
+
+/* reduced motion — stop animation, show single item centered */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
+        transform: translateX(0);
+    }
+}
+@keyframes marqueeAnim {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    } /* moves by one item length because track has 2 copies */
+}
+
+/* ---------- Disable previous hero reveal animation (safe override) ---------- */
+.hero-text h1 {
+    animation: none !important;
+    transform: none !important;
+}
+@keyframes reveal {
+    /* optional: you can remove this whole block if you want to clean file */
 }

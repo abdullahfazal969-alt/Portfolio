@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block body_class %}project-page{% endblock %} {%
 block title %}{{ project.title }} - My Portfolio{%endblock %} {% block content
 %}
-<section class="project-detail-header">
+<section class="project-detail-header animate-fade">
     <h1>{{ project.title }}</h1>
     <div class="macbook-mockup macbook--detail project-hero-mockup">
         <div class="macbook-frame">
@@ -33,7 +33,7 @@ block title %}{{ project.title }} - My Portfolio{%endblock %} {% block content
     </div>
 </section>
 
-<section class="project-content">
+<section class="project-content animate-fade">
     {{ project.content | safe }} {# 'safe' is used because project.content is
     already HTML from markdown conversion #}
 </section>
