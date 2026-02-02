@@ -67,14 +67,14 @@ header .container {
 header .logo a {
     font-weight: 500;
     font-size: 1rem;
-    max-width: 200px;
+    max-width: 250px;
     text-decoration: none;
     color: var(--color-text-light);
     position: relative;
     display: inline-block;
     overflow: hidden;
-    height: 1.4em;
-    line-height: 1.4em;
+    height: 1.6em;
+    line-height: 1.6em;
     vertical-align: middle;
 }
 
@@ -1323,9 +1323,9 @@ footer .cta-circle[aria-hidden="true"] {
 .contact-header .contact-title {
     font-size: clamp(36px, 5.6vw, 64px); /* large heading like Inspirant */
     line-height: 1.02;
+    font-weight: 400;
     margin: 0 0 0.6rem;
     color: #111;
-    font-weight: 600;
 }
 
 .contact-sub {
