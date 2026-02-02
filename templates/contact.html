@@ -1,0 +1,155 @@
+{% extends "base.html" %} {% block body_class %}contact-page{% endblock %} {%
+block title %}Contact - My Portfolio{% endblock %} {% block content %}
+<main class="contact-page-main">
+    <div class="container contact-grid">
+        <!-- LEFT: form & heading -->
+        <div class="contact-left">
+            <header class="contact-header">
+                <h2 class="contact-title">Let's start a project together</h2>
+                <p class="contact-sub">
+                    Tell me the essentials and I’ll follow up within a few days.
+                </p>
+            </header>
+
+            <form
+                id="contact-form"
+                method="post"
+                action="{{ url_for('submit_contact') }}"
+                class="contact-form"
+            >
+                <div class="form-row">
+                    <label class="form-label"
+                        ><span class="form-index">01</span> What's your
+                        name?</label
+                    >
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="John Doe"
+                        required
+                    />
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label"
+                        ><span class="form-index">02</span> What's your
+                        email?</label
+                    >
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="john@doe.com"
+                    />
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label"
+                        ><span class="form-index">03</span> Organization</label
+                    >
+                    <input
+                        id="org"
+                        name="org"
+                        type="text"
+                        placeholder="Company name (optional)"
+                    />
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label"
+                        ><span class="form-index">04</span> What services are
+                        you looking for?</label
+                    >
+                    <input
+                        id="services"
+                        name="services"
+                        type="text"
+                        placeholder="Web design, web app, branding..."
+                    />
+                </div>
+
+                <div class="form-row">
+                    <label class="form-label"
+                        ><span class="form-index">05</span> Your message</label
+                    >
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        placeholder="Hello — can you help me with... "
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-row form-row-cta">
+                    <button id="contact-submit" type="submit" class="button">
+                        Send Message
+                    </button>
+                </div>
+
+                <div
+                    id="contact-result"
+                    aria-live="polite"
+                    class="contact-result"
+                    hidden
+                ></div>
+            </form>
+        </div>
+
+        <!-- RIGHT: profile pic + contact details -->
+        <aside class="contact-right" aria-label="Contact details">
+            <div class="contact-profile">
+                <div class="contact-avatar">
+                    <img
+                        src="{{ url_for('static', filename='images/profile/profile.png') }}"
+                        alt="Profile"
+                    />
+                </div>
+            </div>
+
+            <div class="contact-details">
+                <a
+                    class="pill contact-pill"
+                    href="mailto:abdullahfazal969@gmail.com"
+                    >abdullahfazal969@gmail.com</a
+                >
+                <a class="pill contact-pill" href="tel:+923195643085"
+                    >+92-3195643-085</a
+                >
+
+                <div class="contact-meta">
+                    <div class="meta-item">
+                        <strong>VERSION</strong><span>2026 © Edition</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>LOCAL TIME</strong
+                        ><span id="local-time-compact">--:--</span>
+                    </div>
+                </div>
+
+                <nav class="contact-socials" aria-label="Social links">
+                    <a
+                        href="https://www.instagram.com/a._fazal_/"
+                        target="_blank"
+                        rel="noopener"
+                        >Instagram</a
+                    >
+                    <a
+                        href="https://github.com/abdullahfazal969-alt"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub</a
+                    >
+                    <a
+                        href="https://www.linkedin.com/in/abdullah-fazal-2985a2298/"
+                        target="_blank"
+                        rel="noopener"
+                        >LinkedIn</a
+                    >
+                </nav>
+            </div>
+        </aside>
+    </div>
+</main>
+{% endblock %}

@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         } catch (e) {}
 
         el.textContent = `${pad(hour12)}:${minutes} ${isPM ? "PM" : "AM"} ${tz}`;
+        // also copy to compact contact footer if present
+        const compactEl = document.getElementById("local-time-compact");
+        if (compactEl) compactEl.textContent = el.textContent;
     }
 
     showTime();
@@ -259,4 +262,74 @@ document.addEventListener("DOMContentLoaded", (event) => {
     );
 
     observer.observe(footer);
+})();
+
+// ---------- Contact form AJAX submit ----------
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    const resultDiv = document.getElementById("contact-result");
+
+    form.addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+
+        const submitBtn = document.getElementById("contact-submit");
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !message) {
+            resultDiv.textContent = "Please enter your name and message.";
+            resultDiv.style.color = "crimson";
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        try {
+            const resp = await fetch(form.action, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, message }),
+            });
+
+            const data = await resp.json();
+            if (resp.ok && data.ok) {
+                resultDiv.textContent = "Thanks — your message was sent!";
+                resultDiv.style.color = "";
+                form.reset();
+            } else {
+                resultDiv.textContent =
+                    data && data.error ? data.error : "Submission failed.";
+                resultDiv.style.color = "crimson";
+            }
+        } catch (err) {
+            console.error("Contact submit error", err);
+            resultDiv.textContent = "Network error, please try again later.";
+            resultDiv.style.color = "crimson";
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Send Message";
+        }
+    });
+});
+
+// reveal right column when it scrolls into view
+(function () {
+    const right = document.querySelector(".contact-right");
+    if (!right || !("IntersectionObserver" in window)) {
+        if (right) right.classList.add("visible");
+        return;
+    }
+    const io = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((e) => {
+                if (e.isIntersecting) right.classList.add("visible");
+            });
+        },
+        { threshold: 0.12 },
+    );
+    io.observe(right);
 })();

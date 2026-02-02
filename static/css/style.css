@@ -67,6 +67,7 @@ header .container {
 header .logo a {
     font-weight: 500;
     font-size: 1rem;
+    max-width: 200px;
     text-decoration: none;
     color: var(--color-text-light);
     position: relative;
@@ -1294,4 +1295,251 @@ footer .cta-circle[aria-hidden="true"] {
 }
 @keyframes reveal {
     /* optional: you can remove this whole block if you want to clean file */
+}
+
+/* ---------------- CONTACT PAGE LAYOUT & STYLES ---------------- */
+.contact-page-main {
+    background: #ffffff; /* page background for contact */
+    color: var(--color-text-dark);
+    padding: 4rem 0 6rem;
+}
+
+/* two-column layout */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* left column */
+.contact-left {
+    padding-right: 1rem;
+}
+
+.contact-header .contact-title {
+    font-size: clamp(36px, 5.6vw, 64px); /* large heading like Inspirant */
+    line-height: 1.02;
+    margin: 0 0 0.6rem;
+    color: #111;
+    font-weight: 600;
+}
+
+.contact-sub {
+    margin: 0 0 2rem;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* form rows */
+.contact-form {
+    background: transparent;
+}
+.form-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 1.2rem 0;
+    margin: 0 0 0.8rem;
+}
+.form-row:last-of-type {
+    margin-bottom: 1.8rem;
+}
+
+/* label left small index + label text */
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+.form-index {
+    display: inline-block;
+    width: 36px;
+    color: #999;
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+/* inputs and textarea lined style */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #111;
+    padding: 8px 0;
+    resize: vertical;
+}
+.contact-form textarea {
+    min-height: 140px;
+}
+
+/* CTA row: center the button */
+.form-row-cta {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 0;
+}
+
+/* keep your existing .button style but make it slightly larger for CTA */
+.form-row-cta .button {
+    padding: 0.9rem 1.8rem;
+    border-radius: 999px;
+    font-weight: 700;
+    background: transparent;
+}
+
+/* result message */
+.contact-result {
+    margin-top: 0.8rem;
+    font-weight: 600;
+}
+
+/* right column (profile + pills + meta) */
+.contact-right {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 520ms ease;
+}
+.contact-right.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* avatar */
+.contact-avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.02),
+        rgba(0, 0, 0, 0.01)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+.contact-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    border: 3px solid rgba(255, 255, 255, 0.06);
+}
+
+/* pills (email/phone) reuse .pill, but make them visible on white background */
+.contact-pill {
+    background: #f3f3f3;
+    color: var(--color-text-dark);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* contact meta (timestamp) and socials (compact) */
+.contact-meta {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    color: #666;
+    font-size: 0.85rem;
+}
+.contact-meta .meta-item strong {
+    color: #999;
+    font-size: 0.7rem;
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+/* socials */
+.contact-socials {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.8rem;
+    justify-content: flex-start;
+}
+.contact-socials a {
+    color: #444;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ---------------- show only footer bottom on contact page -------------- */
+/* hide footer top area (big heading / pills) on contact page to mimic Inspirant */
+.contact-page .site-footer .footer-top {
+    display: none !important;
+}
+
+/* keep only footer-bottom visible and tighten spacing */
+.contact-page .site-footer {
+    padding: 28px 40px !important;
+    background: var(--footer-bg);
+}
+.contact-page .site-footer .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* override header/navbar on contact page to white with dark links */
+body.contact-page header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+body.contact-page header .logo a,
+body.contact-page header nav a {
+    color: var(--color-text-dark) !important;
+}
+body.contact-page header.nav-solid {
+    box-shadow: none;
+}
+
+/* responsive adjustments */
+@media (max-width: 980px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-right {
+        order: -1;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .contact-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    .marquee-item {
+        font-size: 3.5rem;
+    } /* avoid hero oversize clashing */
 }
