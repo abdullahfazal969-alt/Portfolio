@@ -240,12 +240,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 })();
 
-// FOOTER: add class when footer enters viewport for smooth transition
+// ---------- Footer reveal + fade-in when visible ----------
 (function () {
     const footer = document.querySelector(".site-footer");
     if (!footer || !("IntersectionObserver" in window)) return;
 
-    const io = new IntersectionObserver(
+    const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -255,11 +255,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 }
             });
         },
-        {
-            root: null,
-            threshold: 0.08, // when ~8% of footer is visible, toggle class
-        },
+        { root: null, threshold: 0.06 },
     );
 
-    io.observe(footer);
+    observer.observe(footer);
 })();

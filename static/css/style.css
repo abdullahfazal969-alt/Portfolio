@@ -246,6 +246,7 @@ header.nav-solid {
 }
 #projects {
     background-color: rgb(235, 236, 237);
+    border-bottom: none;
 }
 #projects h2 {
     margin-top: 2rem;
@@ -648,27 +649,31 @@ footer hr {
 footer .cta-circle[aria-hidden="true"] {
     display: none;
 }
-/* FOOTER SMOOTH TRANSITION */
-.site-footer {
-    position: relative; /* ensure pseudo-element positions relative to footer */
-    transition: background-color 420ms ease;
-    overflow: visible;
+/* ---------- Footer smooth transition + child reveal ---------- */
+/* initial child state */
+.site-footer .footer-left,
+.site-footer .footer-right {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 420ms ease,
+        transform 420ms ease;
 }
 
-/* top fade pseudo-element (initially hidden) */
+/* the top fade pseudo-element (refined) */
 .site-footer::before {
     content: "";
     position: absolute;
     left: 0;
     right: 0;
-    top: -70px; /* height of the fade overlapping above footer */
-    height: 70px;
+    top: -90px;
+    height: 90px;
     pointer-events: none;
     background: linear-gradient(
         to bottom,
         rgba(235, 235, 235, 0) 0%,
-        rgba(0, 0, 0, 0.06) 30%,
-        rgba(0, 0, 0, 0.12) 60%,
+        rgba(20, 20, 20, 0.06) 30%,
+        rgba(20, 20, 20, 0.14) 60%,
         var(--footer-bg) 100%
     );
     opacity: 0;
@@ -679,15 +684,34 @@ footer .cta-circle[aria-hidden="true"] {
     z-index: 1;
 }
 
-/* when footer is visible, fade the gradient in */
+/* visible state toggled by JS */
 .site-footer.footer-visible::before {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* optional: gentle inner top shadow when visible */
+.site-footer.footer-visible .footer-left,
+.site-footer.footer-visible .footer-right {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* small stagger for children: left first, right slightly later */
+.site-footer.footer-visible .footer-left {
+    transition-delay: 60ms;
+}
+.site-footer.footer-visible .footer-right {
+    transition-delay: 140ms;
+}
+
+/* subtle color shift for footer background when visible */
 .site-footer.footer-visible {
-    box-shadow: inset 0 24px 60px rgba(0, 0, 0, 0.12);
+    background: linear-gradient(
+        180deg,
+        rgba(26, 26, 26, 1) 0%,
+        var(--footer-bg) 100%
+    );
+    box-shadow: inset 0 24px 60px rgba(0, 0, 0, 0.06);
 }
 
 /* ===== Polished MacBook base + frame + screen (drop-in replacement) ===== */
