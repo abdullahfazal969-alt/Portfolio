@@ -106,13 +106,51 @@ block content %}
     </div>
 </section>
 
-<section id="contact">
-    <h2>Contact Me</h2>
-    <p>
-        Feel free to reach out to me via email at
-        <a href="mailto:your.email@example.com">your.email@example.com</a> or
-        connect with me on LinkedIn.
-    </p>
-    <p>This is a placeholder for a contact form or other contact details.</p>
+<section id="contact" class="home-contact-intro">
+    <div class="container home-contact-grid">
+        <div class="intro-left">
+            <h2 class="intro-title">Let’s collaborate on something great</h2>
+            <p class="intro-text">
+                Have an idea, a product, or a challenge? I build focused,
+                production-ready web apps and simple AI prototypes. Tell me
+                briefly about the scope, timeline and your preferred
+                communication channel — I’ll get back within a few days.
+            </p>
+
+            <ul class="intro-list" aria-hidden="true">
+                <li><strong>Scope:</strong> Web apps, UI, integrations</li>
+                <li>
+                    <strong>Approach:</strong> Fast prototypes → feedback →
+                    production
+                </li>
+                <li>
+                    <strong>Turnaround:</strong> Feasible timelines & clear
+                    milestones
+                </li>
+            </ul>
+
+            <div class="intro-cta">
+                <a href="{{ url_for('contact_page') }}" class="button"
+                    >Start a conversation</a
+                >
+            </div>
+        </div>
+
+        <aside class="intro-right" aria-label="Quick contact">
+            <div class="intro-avatar" aria-hidden="true">
+                <img
+                    src="{{ url_for('static', filename='images/profile/profile.png') }}"
+                    alt="Profile"
+                />
+            </div>
+
+            <div class="intro-quick">
+                <a class="pill" href="mailto:abdullahfazal969@gmail.com"
+                    >abdullahfazal969@gmail.com</a
+                >
+                <a class="pill" href="tel:+923195643085">+92-3195643-085</a>
+            </div>
+        </aside>
+    </div>
 </section>
 {% endblock %}
