@@ -73,8 +73,8 @@ header .logo a {
     position: relative;
     display: inline-block;
     overflow: hidden;
-    height: 1.6em;
-    line-height: 1.6em;
+    height: 24px;
+    line-height: 24px;
     vertical-align: middle;
 }
 
@@ -83,7 +83,7 @@ header .logo .byline-hover {
     display: block;
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     white-space: nowrap;
-    line-height: 1.4em;
+    line-height: 24px;
 }
 
 header .logo .byline-hover {
@@ -155,7 +155,6 @@ header.nav-solid {
     background-color: var(--header-bg);
     border-bottom: none;
 }
-
 .hero-content {
     display: block;
     max-width: 900px;
@@ -185,7 +184,12 @@ header.nav-solid {
     animation: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     animation-fill-mode: forwards;
 }
-
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 .hero-text p {
     font-size: 2rem;
     font-weight: 400;
@@ -1067,6 +1071,11 @@ footer .cta-circle[aria-hidden="true"] {
     }
     .hero-text p {
         font-size: 1.2rem;
+        max-width: 90%;
+        margin: 1.5rem auto 0 auto;
+    }
+    .marquee-item {
+        font-size: 3rem;
     }
 
     /* --- Section Headings --- */
@@ -1194,7 +1203,7 @@ footer .cta-circle[aria-hidden="true"] {
 /* marquee items style */
 .marquee__item {
     font-size: 2.4rem; /* tune to match your hero size */
-    font-weight: 600;
+    font-weight: 400px;
     color: var(--color-text-light); /* because hero has dark bg */
     opacity: 0.95;
 }
