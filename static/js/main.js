@@ -128,36 +128,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
     window.addEventListener("scroll", onScroll, { passive: true });
 })();
 
-// ---------- PAGE LOADER (2s) with smart handling of anchors ----------
+// PAGE LOADER robust
 (function () {
     const loader = document.getElementById("page-loader");
     if (!loader) return;
 
-    const DEFAULT_MS = 1000; // 2 seconds
+    const DEFAULT_MS = 1000;
     const REDUCED_MS = 600;
     const prefersReduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
     ).matches;
     const showMs = prefersReduced ? REDUCED_MS : DEFAULT_MS;
 
-    // show for initial load, then hide
-    loader.classList.remove("hidden");
-    setTimeout(() => loader.classList.add("hidden"), showMs);
-
-    // helper: smooth scroll to hash on same page
-    function smoothScrollToHash(hash) {
-        try {
-            const target = document.querySelector(hash);
-            if (!target) return;
-            if (window.lenis && typeof window.lenis.scrollTo === "function") {
-                lenis.scrollTo(target, { offset: 0, duration: 0.9 });
-            } else {
-                target.scrollIntoView({ behavior: "smooth" });
+    // ensure loader hides eventually even if other errors happen
+    function hideLoaderSafe(ms) {
+        setTimeout(() => {
+            try {
+                loader.classList.add("hidden");
+            } catch (e) {
+                loader.style.display = "none";
             }
-        } catch (e) {
-            /* ignore */
-        }
+        }, ms);
     }
+
+    loader.classList.remove("hidden");
+    hideLoaderSafe(showMs);
 
     document.addEventListener(
         "click",
@@ -166,37 +161,38 @@ document.addEventListener("DOMContentLoaded", (event) => {
             if (!a) return;
 
             const href = a.getAttribute("href") || "";
-            // ignore special / external cases
             if (href.startsWith("mailto:") || href.startsWith("tel:")) return;
             if (a.target === "_blank" || a.hasAttribute("download")) return;
 
-            // Absolute URL object for robust checks
             let dest;
             try {
                 dest = new URL(a.href, location.href);
             } catch (err) {
-                // malformed href — ignore
                 return;
             }
-
-            // external origin => do nothing
             if (dest.origin !== location.origin) return;
 
-            // Same-page navigation (pathnames equal):
-            if (dest.pathname === location.pathname) {
-                // if it's only an anchor/hash on same page -> smooth scroll (no overlay)
-                if (dest.hash) {
-                    e.preventDefault();
-                    smoothScrollToHash(dest.hash);
-                    return;
+            // same-page anchor -> smooth scroll, no overlay
+            if (dest.pathname === location.pathname && dest.hash) {
+                e.preventDefault();
+                const target = document.querySelector(dest.hash);
+                if (target) {
+                    if (
+                        window.lenis &&
+                        typeof window.lenis.scrollTo === "function"
+                    ) {
+                        lenis.scrollTo(target, { offset: 0, duration: 0.9 });
+                    } else {
+                        target.scrollIntoView({ behavior: "smooth" });
+                    }
                 }
-                // same page, no hash -> let browser handle (no overlay)
                 return;
             }
 
-            // Internal navigation to a different path on same origin -> show loader then navigate
+            // internal navigation -> show overlay then navigate
             e.preventDefault();
             loader.classList.remove("hidden");
+            hideLoaderSafe(showMs); // ensure it hides in case navigation is slow
             setTimeout(() => {
                 window.location.href = dest.href;
             }, showMs);
@@ -205,41 +201,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
     );
 })();
 
-// HERO MARQUEE: make viewport size equal to one item so only one name is visible
+// HERO MARQUEE robust setup
 (function () {
     if (
         window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-        // if reduced motion is preferred, stop here
+    )
         return;
-    }
 
-    function setupMarquee() {
+    function setupMarqueeOnce() {
         document.querySelectorAll(".marquee-viewport").forEach((viewport) => {
             const track = viewport.querySelector(".marquee-track");
             const item = viewport.querySelector(".marquee-item");
             if (!track || !item) return;
 
-            // measure the item width including padding/border
-            const itemWidth = Math.ceil(item.getBoundingClientRect().width);
+            // measure after ensuring layout is stable
+            const measure = () => {
+                const itemWidth = Math.ceil(item.getBoundingClientRect().width);
+                // guard: if width is 0, retry slightly later
+                if (!itemWidth) return setTimeout(measure, 60);
+                viewport.style.width = itemWidth + "px";
+                const duration = Math.max(8, Math.round(itemWidth / 40)); // seconds
+                track.style.setProperty("--marquee-duration", duration + "s");
+                track.style.transform = "translateX(0)";
+            };
 
-            // set viewport width to item width so only one item is visible
-            viewport.style.width = itemWidth + "px";
+            measure();
 
-            // set duration proportionally so speed feels consistent across screen sizes
-            // lower divisor = faster; 40 gives a comfortable slow scroll
-            const duration = Math.max(8, Math.round(itemWidth / 40)); // seconds (min 8s)
-            track.style.setProperty("--marquee-duration", duration + "s");
+            // safety remeasure after small delays (fixes funky mobile loads)
+            setTimeout(measure, 120);
+            setTimeout(measure, 600);
         });
     }
 
-    // run on load and on resize (debounced)
-    window.addEventListener("load", setupMarquee);
-    let resizeTO;
-    window.addEventListener("resize", function () {
-        clearTimeout(resizeTO);
-        resizeTO = setTimeout(setupMarquee, 120);
+    window.addEventListener("load", () => {
+        setupMarqueeOnce();
+        // also re-run on orientation change / resize
+        let t;
+        window.addEventListener("resize", () => {
+            clearTimeout(t);
+            t = setTimeout(setupMarqueeOnce, 140);
+        });
+        window.addEventListener("orientationchange", () => {
+            setTimeout(setupMarqueeOnce, 220);
+        });
     });
 })();
 

@@ -1704,3 +1704,50 @@ body.contact-page header.nav-solid {
         height: 60px;
     }
 }
+/* MOBILE: force true centering for hero text & marquee (use at end of style.css) */
+@media (max-width: 480px) {
+    /* ensure outer container breathing room but no asymmetry */
+    #hero .container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box;
+    }
+
+    /* center the hero-text block and prevent marquee from pushing layout */
+    #hero .hero-text {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        overflow-x: hidden !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* paragraph: remove forced inline margins, center the block, keep max width */
+    #hero .hero-text p {
+        margin: 24px auto 0 !important; /* center the block */
+        padding: 0 !important;
+        width: auto !important; /* let max-width control sizing */
+        max-width: 92% !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    /* marquee viewport: make it truly centered and prevent overflow */
+    .marquee-viewport {
+        display: block !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    /* slightly smaller marquee text on very small screens */
+    .marquee-item {
+        font-size: 2.9rem !important;
+        line-height: 1 !important;
+    }
+}
