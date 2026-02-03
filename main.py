@@ -12,14 +12,11 @@ from flask import (
     abort,
     current_app,
     jsonify,
-    redirect,
     render_template,
     request,
-    url_for,
 )
 
 load_dotenv()
-
 app = Flask(__name__)
 
 PROJECTS_DIR = "pages"
