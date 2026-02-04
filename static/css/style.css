@@ -1704,50 +1704,64 @@ body.contact-page header.nav-solid {
         height: 60px;
     }
 }
-/* MOBILE: force true centering for hero text & marquee (use at end of style.css) */
+/* MOBILE: compact, reliable centering for hero & marquee */
 @media (max-width: 480px) {
-    /* ensure outer container breathing room but no asymmetry */
+    /* keep container padding symmetric */
     #hero .container {
-        padding-left: 16px !important;
-        padding-right: 16px !important;
+        padding-left: 16px;
+        padding-right: 16px;
         box-sizing: border-box;
     }
 
-    /* center the hero-text block and prevent marquee from pushing layout */
+    /* center hero block and prevent horizontal shifts from the marquee */
     #hero .hero-text {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        overflow-x: hidden !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        box-sizing: border-box !important;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden; /* critical: stops marquee nudging layout */
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    /* paragraph: remove forced inline margins, center the block, keep max width */
+    /* ensure marquee header occupies full width and is centered */
+    .hero-marquee,
+    .hero-marquee .marquee-viewport {
+        width: 100%;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    /* keep marquee track inline and prevent wrapping */
+    .marquee-track {
+        display: inline-flex;
+        white-space: nowrap;
+    }
+
+    /* paragraph: full-width block with symmetric inner padding */
     #hero .hero-text p {
-        margin: 24px auto 0 !important; /* center the block */
-        padding: 0 !important;
-        width: auto !important; /* let max-width control sizing */
-        max-width: 92% !important;
-        text-align: center !important;
-        box-sizing: border-box !important;
+        width: 100%;
+        max-width: 92%;
+        margin: 24px 0 0;
+        padding: 0 12px; /* symmetric padding instead of margin-left/right */
+        text-align: center;
+        box-sizing: border-box;
+        font-size: 1rem; /* adjust if needed */
+        line-height: 1.6;
     }
 
-    /* marquee viewport: make it truly centered and prevent overflow */
-    .marquee-viewport {
-        display: block !important;
-        margin: 0 auto !important;
-        padding: 0 !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-    }
-
-    /* slightly smaller marquee text on very small screens */
+    /* slightly smaller marquee text for very small screens */
     .marquee-item {
-        font-size: 2.9rem !important;
-        line-height: 1 !important;
+        font-size: 2.6rem;
+        line-height: 1;
+    }
+
+    /* safety net: prevent any accidental horizontal scroll on tiny devices */
+    body {
+        overflow-x: hidden;
     }
 }

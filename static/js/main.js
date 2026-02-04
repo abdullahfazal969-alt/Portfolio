@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const loader = document.getElementById("page-loader");
     if (!loader) return;
 
-    const DEFAULT_MS = 1000;
+    const DEFAULT_MS = 2000;
     const REDUCED_MS = 600;
     const prefersReduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
